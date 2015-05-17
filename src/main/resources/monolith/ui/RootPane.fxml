@@ -1,0 +1,12 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="monolith.ui.RootPaneController" styleClass="pane-root"
+          alignment="center" hgap="10" vgap="10">
+
+  <StackPane>
+    <fx:include source="/monolith/ui/menu/MenuPane.fxml"/>
+    <fx:include source="new-game/NewGamePane.fxml"/>
+    <fx:include source="in-game/InGamePane.fxml"/>
+  </StackPane>
+</GridPane>

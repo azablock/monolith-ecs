@@ -1,0 +1,127 @@
+.root {
+
+  -fx-font-family: Bitwise;
+
+  /***************************************************************************
+   *                                                                         *
+   * The main color palette from which the rest of the colors are derived.   *
+   *                                                                         *
+   **************************************************************************/
+  /* A light grey that is the base color for objects.  Instead of using
+   * -fx-base directly, the sections in this file will typically use -fx-color.
+   */
+  -fx-base: #222222;
+  /* A very light grey used for the background of windows.  See also
+   * -fx-text-background-color, which should be used as the -fx-text-fill
+   * value for text painted on top of backgrounds colored with -fx-background.
+   */
+  -fx-control-inner-background: #121212;
+  /* One of these colors will be chosen based upon a ladder calculation
+   * that uses the brightness of a background color.  Instead of using these
+   * colors directly as -fx-text-fill values, the sections in this file should
+   * use a derived color to match the background in use.  See also:
+   *
+   * -fx-text-base-color for text on top of -fx-base, -fx-color, and -fx-body-color
+   * -fx-text-background-color for text on top of -fx-background
+   * -fx-text-inner-color for text on top of -fx-control-inner-color
+   * -fx-selection-bar-text for text on top of -fx-selection-bar
+   */
+  -fx-dark-text-color: #111111;
+  -fx-mid-text-color: #bfbfbf;
+  -fx-light-text-color: #efefef;
+  /* A bright blue for highlighting/accenting objects.  For example: selected
+   * text; selected items in menus, lists, trees, and tables; progress bars;
+   * default buttons.
+   */
+  -fx-accent: #00ff9c;
+  /* A bright blue for the focus indicator of objects. Typically used as the
+   * first color in -fx-background-color for the "focused" pseudo-class. Also
+   * typically used with insets of -1.4 to provide a glowing effect.
+   *
+   */
+  -fx-focus-color: #93c6cc;
+  /* The color that is used in styling controls. The default value is based
+   * on -fx-base, but is changed by pseudoclasses to change the base color.
+   * For example, the "hover" pseudoclass will typically set -fx-color to
+   * -fx-hover-base (see below) and the "armed" pseudoclass will typically
+   * set -fx-color to -fx-pressed-base.
+   */
+  -fx-color: -fx-base;
+  /* The opacity level to use for the "disabled" pseudoclass.
+   */
+  -fx-disabled-opacity: 55%;
+  /***************************************************************************
+   *                                                                         *
+   * Colors that are derived from the main color palette.                    *
+   *                                                                         *
+   **************************************************************************/
+  /* A little lighter than -fx-base and used as the -fx-color for the
+   * "hovered" pseudoclass state.
+   */
+  -fx-hover-base: ladder(-fx-base, derive(-fx-base, 20%) 20%, derive(-fx-base, 30%) 35%, derive(-fx-base, 40%) 50%);
+  /* A little darker than -fx-base and used as the -fx-color for the
+   * "armed" pseudoclass state.
+   *
+   */
+  -fx-pressed-base: derive(-fx-base, -20%);
+  /* Used to specify the body color for focused objects.  By default, it's
+   * the same as -fx-base (i.e., the body color doesn't change when a control
+   * gets focus).
+   */
+  -fx-focused-base: -fx-base;
+
+  -fx-text-fill: -fx-text-background-color;
+  /* A little darker than -fx-color and used to draw boxes around objects such
+   * as progress bars, scroll bars, scroll panes, trees, tables, and lists.          */
+  -fx-box-border: ladder(-fx-color, black 20%, derive(-fx-color, -30%) 30%);
+  /* Darker than -fx-background and used to draw boxes around text boxes and
+   * password boxes.                      */
+  -fx-outer-border: linear-gradient(to bottom, derive(-fx-color, -9%) 0%, derive(-fx-color, -33%) 100%);
+  /* A gradient that goes from a bit lighter than -fx-color on the top to
+   * a little darker at the bottom.  Typically is the third color in the
+   * -fx-background-color list as a thin highlight inside the outer border.
+   * Insets are typically 1.               */
+  -fx-inner-border: linear-gradient(to bottom, ladder(-fx-color, derive(-fx-color, 80%) 60%, white 82%) 0%, ladder(-fx-color, derive(-fx-color, 20%) 10%, derive(-fx-color, -10%) 80%) 100%);
+  -fx-inner-border-horizontal: linear-gradient(to right, ladder(-fx-color, derive(-fx-color, 80%) 60%, white 82%) 0%, ladder(-fx-color, derive(-fx-color, 20%) 10%, derive(-fx-color, -10%) 80%) 100%);
+  -fx-inner-border-bottomup: linear-gradient(to top, ladder(-fx-color, derive(-fx-color, 80%) 60%, white 82%) 0%, ladder(-fx-color, derive(-fx-color, 20%) 10%, derive(-fx-color, -10%) 80%) 100%);
+  /* A gradient that goes from a little lighter than -fx-color at the top to
+   * a little darker than -fx-color at the bottom and is used to fill the
+   * body of many controls such as buttons.  Typically is the fourth color
+   * in the -fx-background-color list and represents main body of the control.
+   * Insets are typically 2.           */
+  -fx-body-color: linear-gradient(to bottom, derive(-fx-color, 34%) 0%, derive(-fx-color, -18%) 100%);
+  -fx-body-color-bottomup: linear-gradient(to top, derive(-fx-color, 34%) 0%, derive(-fx-color, -18%) 100%);
+  /* The color to use as -fx-text-fill when painting text on top of
+   * backgrounds filled with -fx-base, -fx-color, and -fx-body-color.        */
+  -fx-text-base-color: ladder(-fx-color, -fx-light-text-color 45%, -fx-dark-text-color 46%, -fx-dark-text-color 59%, -fx-mid-text-color 60%);
+  /* The color to use as -fx-text-fill when painting text on top of
+   * backgrounds filled with -fx-control-inner-background. */
+  -fx-text-inner-color: ladder(-fx-control-inner-background, -fx-light-text-color 45%, -fx-dark-text-color 46%, -fx-dark-text-color 59%, -fx-mid-text-color 60%);
+  /* The color to use for small mark-like objects such as checks on check
+   * boxes, filled in circles in radio buttons, arrows on scroll bars, etc.*/
+  -fx-mark-color: ladder(-fx-color, white 30%, derive(-fx-color, -63%) 31%);
+  /* The small thin light "shadow" for mark-like objects. Typically used in
+   * conjunction with -fx-mark-color with an insets of 1 0 -1 0. */
+  -fx-mark-highlight-color: ladder(-fx-color, derive(-fx-color, 80%) 60%, white 70%);
+
+  /* The default border color for a tab.s*/
+  -fx-tab-border-color: -fx-box-border;
+
+  /* These are needed for Popup */
+  -fx-background-color: inherit;
+  -fx-background-radius: inherit;
+  -fx-background-insets: inherit;
+  -fx-padding: inherit;
+
+  /* The color to use in ListView/TreeView/TableView to indicate hover. */
+  -fx-cell-hover-color: #2f7776;
+  -fx-cell-focus-inner-border: #85b9de;
+
+  /* The colors to use in Pagination */
+  -fx-page-bullet-border: #acacac;
+  -fx-page-indicator-hover-border: #accee5;
+}
+
+.pane-root {
+  -fx-background-color: linear-gradient(from 0 0 to 0 100%, #232323 0.0%, #343434 100.0%);
+}
