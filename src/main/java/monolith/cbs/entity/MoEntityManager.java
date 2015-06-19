@@ -74,6 +74,22 @@ public class MoEntityManager {
     store.remove(entity, component);
   }
 
+  public <T extends MoComponent> void removeComponent(@NotNull final UUID entity, @NotNull final Class<T> componentType) {
+
+    HashMap<UUID, ? extends MoComponent> store = componentStores.get(componentType);
+
+    if (store == null)
+      throw new MoDataException("There are no entities with component of class " + componentType);
+
+//    T result = (T) store.remove(entity);
+//    if (result == null)
+//      throw new MoDataException(nameFor(entity) + " does not possess component of class\n\tmissing: " + componentType);
+
+    store.remove(entity, getComponent(entity, componentType));
+
+  }
+
+
   public <T extends MoComponent> boolean hasComponent(@NotNull final UUID entity, @NotNull final Class<T> componentType) {
 
     Collection<MoComponent> components = getAllComponentsOfEntity(entity);

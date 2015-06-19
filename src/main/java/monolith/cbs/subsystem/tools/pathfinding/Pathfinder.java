@@ -8,5 +8,5 @@ import java.util.LinkedList;
 public interface Pathfinder {
 
   @NotNull
-  LinkedList<Apex> calculatePath(@NotNull final Apex start, @NotNull final Apex destination);
+  LinkedList<Apex> path(@NotNull final Apex start, @NotNull final Apex destination);
 }

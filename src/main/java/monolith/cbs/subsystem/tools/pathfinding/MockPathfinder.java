@@ -11,7 +11,7 @@ public class MockPathfinder implements Pathfinder {
 
   @NotNull
   @Override
-  public LinkedList<Apex> calculatePath(@NotNull Apex start, @NotNull Apex destination) {
+  public LinkedList<Apex> path(@NotNull Apex start, @NotNull Apex destination) {
 
     LinkedList<Apex> path = new LinkedList<>();
     path.addLast(destination);

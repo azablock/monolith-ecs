@@ -80,6 +80,11 @@ public class MoMetaEntity {
     ENTITY_MANAGER.removeComponent(entity, component);
   }
 
+  public <T extends MoComponent> void remove(@NotNull final Class<T> componentType) {
+
+    ENTITY_MANAGER.removeComponent(entity, componentType);
+  }
+
   @NotNull
   public List<? extends MoComponent> getAll() {
 

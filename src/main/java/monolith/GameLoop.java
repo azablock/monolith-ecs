@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import static javafx.animation.Animation.INDEFINITE;
 import static monolith.cbs.entity.MoEntityManager.ENTITY_MANAGER;
+import static monolith.cbs.subsystem.tools.fps.FPSConstants.DEBUG_FAST_FPS;
 import static monolith.cbs.subsystem.tools.fps.FPSConstants.RELEASE_FPS;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -45,7 +46,7 @@ public class GameLoop {
     gameLoopTimeline = new Timeline();
     gameLoopTimeline.setCycleCount(INDEFINITE);
 
-    gameLoopTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(RELEASE_FPS), event -> {
+    gameLoopTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(DEBUG_FAST_FPS), event -> {
 
       subSystemManager.forEach(MoSubSystem::processOneGameTick);
       inGamePaneController.getDebugLabel().setText("entities: " + ENTITY_MANAGER.entityCount() + "\n" +

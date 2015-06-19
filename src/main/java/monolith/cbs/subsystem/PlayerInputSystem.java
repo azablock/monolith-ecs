@@ -64,7 +64,7 @@ public class PlayerInputSystem implements MoSubSystem, EventHandler<MouseEvent> 
                                                               magnitude.getX(),
                                                               magnitude.getY())));
 
-        vmTranslator.setCurrentActivePosition(magnitude); //to nie tu, tylko w movement czy cos, ale narazie jest tmp
+//        vmTranslator.setCurrentActivePosition(magnitude); //TODO: w innym systemie to powinno byc
       });
 
       events.removeFirst();

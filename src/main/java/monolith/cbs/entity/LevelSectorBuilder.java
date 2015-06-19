@@ -29,7 +29,7 @@ public class LevelSectorBuilder implements MoEntityBuilder {
   @PostConstruct
   private void init() {
 
-    boundingBox = BoundingBox.newInstance(pos(1, 1), pos(10, 12));
+    boundingBox = BoundingBox.newInstance(pos(0, 0), pos(10, 12));
   }
 
   public LevelSectorBuilder boundingBox(BoundingBox boundingBox) {
