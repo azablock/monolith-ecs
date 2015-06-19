@@ -64,13 +64,6 @@ public class PlayerInputSystem implements MoSubSystem, EventHandler<MouseEvent> 
                                                               magnitude.getX(),
                                                               magnitude.getY())));
 
-
-        Point2D deltaPoint = new Point2D(mouseActionPoint.getX() - node.getLayoutX(), mouseActionPoint.getY() - node.getLayoutY());
-
-        LOG.debug("distance between mouseAction and playerActorGraphics: " + deltaPoint + " , FIELD_WORLD_SIZE: " + FIELD_WORLD_SIZE);
-        LOG.debug("vector magnitude (discrete): " + magnitude);
-        LOG.debug("fromDouble (vm): " + vmTranslator.fromDouble(deltaPoint) + "\n");
-
         vmTranslator.setCurrentActivePosition(magnitude); //to nie tu, tylko w movement czy cos, ale narazie jest tmp
       });
 

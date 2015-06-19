@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import monolith.cbs.component.graphics.Graphics;
@@ -22,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Iterator;
 
+import static javafx.scene.paint.Color.*;
 import static monolith.cbs.component.graphics.GraphicsConstants.FIELD_WORLD_SIZE;
 import static monolith.cbs.component.position.DiscretePositionUtils.pos;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -44,33 +42,41 @@ public class GameWorldPaneController implements Iterable<Node> {
   private Pane gameWorldPane;
 
   @FXML
+  private Group frontGroup;
+
+  @FXML
+  private Group backGroup;
+
+  @FXML
   public void initialize() {
 
-//    entityBuilderManager.builderFor(LevelSectorBuilder.class)
-//                        .build();
+    backGroup.toBack();
+    frontGroup.toFront();
+
+    entityBuilderManager.builderFor(LevelSectorBuilder.class)
+                        .build();
 
     entityBuilderManager.builderFor(CrateBuilder.class)
-                        .apex(pos(10, 8))
+                        .apex(pos(2, 4))
                         .build();
 
     MoMetaEntity playerActor = entityBuilderManager.builderFor(PlayerActorBuilder.class)
-                                             .apex(pos(8, 8))
-                                             .build();
+                                                   .apex(pos(8, 8))
+                                                   .build();
 
     Point2D initRelocatePoint = vmTranslator.fromDiscrete(playerActor.get(ApexPosition.class).getApex());
-//    playerActor.get(Graphics.class).node.relocate(initRelocatePoint.getX(), initRelocatePoint.getY());
     playerActor.get(Graphics.class).node.relocate(playerActor.get(ApexPosition.class).getX() * FIELD_WORLD_SIZE,
                                                   playerActor.get(ApexPosition.class).getY() * FIELD_WORLD_SIZE);
 
     gameWorldPane.setOnMouseClicked(playerInputSystem::handle);
 
-
-    Rectangle rectangle = new Rectangle(FIELD_WORLD_SIZE, FIELD_WORLD_SIZE, new Color(0.1, 0.1, 0.1, 1.0));
-    rectangle.setStroke(Color.GREEN);
+    Rectangle rectangle = new Rectangle(FIELD_WORLD_SIZE, FIELD_WORLD_SIZE, new Color(0.1, 0.1, 0.1, 1.0));      //tmp
+    rectangle.setFill(TRANSPARENT);
+    rectangle.setStroke(GREEN);
     rectangle.setStrokeWidth(2.0);
     gameWorldPane.getChildren().add(rectangle);
-    gameWorldPane.setOnMouseMoved(event -> rectangle.relocate(( (int) (event.getX() / FIELD_WORLD_SIZE)) * FIELD_WORLD_SIZE,
-                                                               ((int) (event.getY() / FIELD_WORLD_SIZE)) * FIELD_WORLD_SIZE));
+    gameWorldPane.setOnMouseMoved(event -> rectangle.relocate(((int) (event.getX() / FIELD_WORLD_SIZE)) * FIELD_WORLD_SIZE,
+                                                              ((int) (event.getY() / FIELD_WORLD_SIZE)) * FIELD_WORLD_SIZE));
   }
 
   @Override
@@ -79,8 +85,11 @@ public class GameWorldPaneController implements Iterable<Node> {
     return gameWorldPane.getChildren().iterator();
   }
 
-  public void addChild(@NotNull final Node node) {
+  public void addChild(@NotNull final Node node, boolean toFront) {
 
-    gameWorldPane.getChildren().add(node);
+    if (toFront)
+      frontGroup.getChildren().add(node);
+    else
+      backGroup.getChildren().add(node);
   }
 }
