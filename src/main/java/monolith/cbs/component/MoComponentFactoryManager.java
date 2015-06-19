@@ -3,9 +3,6 @@ package monolith.cbs.component;
 import monolith.cbs.component.graphics.CrateGraphicsFactory;
 import monolith.cbs.component.graphics.LevelSectorGraphicsFactory;
 import monolith.cbs.component.graphics.PlayerActorGraphicsFactory;
-import monolith.cbs.component.movement.MovementPathFactory;
-import monolith.cbs.component.position.ApexPositionFactory;
-import monolith.cbs.component.position.EdgePositionFactory;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,15 +21,6 @@ public class MoComponentFactoryManager {
   private CrateGraphicsFactory crateGraphicsFactory;
 
   @Autowired
-  private ApexPositionFactory apexPositionFactory;
-
-  @Autowired
-  private EdgePositionFactory edgePositionFactory;
-
-  @Autowired
-  private MovementPathFactory movementPathFactory;
-
-  @Autowired
   private LevelSectorGraphicsFactory levelSectorGraphicsFactory;
 
   private Map<Class<? extends MoComponentFactory>, MoComponentFactory> componentFactories;
@@ -44,9 +32,6 @@ public class MoComponentFactoryManager {
     componentFactories.put(PlayerActorGraphicsFactory.class, playerActorGraphicsFactory);
     componentFactories.put(LevelSectorGraphicsFactory.class, levelSectorGraphicsFactory);
     componentFactories.put(CrateGraphicsFactory.class, crateGraphicsFactory);
-    componentFactories.put(ApexPositionFactory.class, apexPositionFactory);
-    componentFactories.put(EdgePositionFactory.class, edgePositionFactory);
-    componentFactories.put(MovementPathFactory.class, movementPathFactory);
   }
 
   @NotNull

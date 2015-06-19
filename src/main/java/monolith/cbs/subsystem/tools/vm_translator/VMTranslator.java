@@ -1,7 +1,6 @@
 package monolith.cbs.subsystem.tools.vm_translator;
 
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import monolith.cbs.component.position.Apex;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -21,18 +20,7 @@ public class VMTranslator {
 
   public VMTranslator() {
 
-    currentActivePosition = pos(0, 0);
-  }
-
-  public void translate(@NotNull Node node) {
-
-    Apex fromNode = fromDouble(node.getLayoutX(), node.getLayoutY());//moze translateXY?
-
-    Apex vectorMagnitude = new Apex(fromNode.getX() - currentActivePosition.getX(),
-                                    fromNode.getY() - currentActivePosition.getY());
-
-    Point2D translated = fromDiscrete(vectorMagnitude);
-    node.relocate(vectorMagnitude.getX(), vectorMagnitude.getY());
+    currentActivePosition = pos(8, 10);
   }
 
   public Apex fromDouble(@NotNull final Point2D point2D) {
@@ -61,6 +49,11 @@ public class VMTranslator {
 
     return new Point2D((x - currentActivePosition.getX()) * FIELD_WORLD_SIZE,
                        (y - currentActivePosition.getY()) * FIELD_WORLD_SIZE);
+  }
+
+  public Apex vectorMagnitudeBetween(@NotNull final Point2D start, @NotNull final Point2D destination) {
+
+    return fromDouble(start.getX() - destination.getX(), start.getY() - destination.getY());
   }
 
   public void setCurrentActivePosition(@NotNull Apex currentActivePosition) {

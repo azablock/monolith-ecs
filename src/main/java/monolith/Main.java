@@ -30,11 +30,11 @@ public class Main extends Application {
     primaryStage.initStyle(UNDECORATED);
     primaryStage.centerOnScreen();
     Scene scene = new Scene(root, 1280, 800);
-    scene.getStylesheets().add("monolith/ui/skins/monolith-new.css");
+    scene.getStylesheets().add("monolith/ui/skins/monolith-default.css");
     scene.setCursor(new ImageCursor(new Image("monolith/images/monolithCursor.png")));
 
     primaryStage.setFullScreenExitKeyCombination(NO_MATCH);
-    primaryStage.setFullScreen(true);
+    primaryStage.setFullScreen(false);
     primaryStage.setScene(scene);
     primaryStage.show();
   }

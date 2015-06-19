@@ -1,15 +1,15 @@
-package monolith.cbs.component.move_command;
+package monolith.cbs.component.pathfinding;
 
 import monolith.cbs.component.MoComponent;
 import monolith.cbs.component.position.Apex;
 import org.jetbrains.annotations.NotNull;
 
-public class MoveCommand implements MoComponent {
+public class PathfindingRequest implements MoComponent {
 
   @NotNull
   private final Apex destination;
 
-  public MoveCommand(@NotNull Apex destination) {
+  public PathfindingRequest(@NotNull Apex destination) {
 
     this.destination = destination;
   }

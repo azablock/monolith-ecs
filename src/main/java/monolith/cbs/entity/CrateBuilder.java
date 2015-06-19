@@ -2,9 +2,9 @@ package monolith.cbs.entity;
 
 import monolith.cbs.component.MoComponentFactoryManager;
 import monolith.cbs.component.graphics.CrateGraphicsFactory;
-import monolith.cbs.component.graphics_addition_request.GraphicsAdditionRequest;
+import monolith.cbs.component.graphics.GraphicsAdditionRequest;
 import monolith.cbs.component.position.Apex;
-import monolith.cbs.component.position.ApexPositionFactory;
+import monolith.cbs.component.position.ApexPosition;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,7 +38,7 @@ public class CrateBuilder implements MoEntityBuilder {
 
     MoMetaEntity crate = new MoMetaEntity("Crate");
 
-    crate.add(factoryManager.factoryOfType(ApexPositionFactory.class).newApexPosition(apex));
+    crate.add(new ApexPosition(apex));
     crate.add(factoryManager.factoryOfType(CrateGraphicsFactory.class).newGraphics());
     crate.add(new GraphicsAdditionRequest());
 

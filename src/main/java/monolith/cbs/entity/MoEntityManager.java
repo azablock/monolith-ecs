@@ -1,14 +1,11 @@
 package monolith.cbs.entity;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import monolith.cbs.component.MoComponent;
 import monolith.error.MoDataException;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 import static com.google.common.collect.Collections2.filter;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -171,7 +168,7 @@ public class MoEntityManager {
 
     componentStores.forEach((aClass, componentStore) -> componentStoreSizes.add(componentStore.size()));
 
-    for(Integer size : componentStoreSizes)
+    for (Integer size : componentStoreSizes)
       componentCount += size;
 
     return componentCount;
@@ -181,7 +178,6 @@ public class MoEntityManager {
 
     return entities.size();
   }
-
 
   @NotNull
   public <T extends MoComponent> UUID createEntity() {

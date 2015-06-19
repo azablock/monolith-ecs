@@ -19,14 +19,13 @@ public class PlayerActorGraphicsFactory implements GraphicsFactory {
 
   @NotNull
   @Override
-  public Graphics newGraphics() {
+  public Graphics<ImageView> newGraphics() {
 
     ImageView sprite = new ImageView(new Image(spritePath));
     sprite.setFitWidth(FIELD_WORLD_SIZE);
     sprite.setFitHeight(FIELD_WORLD_SIZE);
     sprite.setPreserveRatio(true);
-    sprite.toFront();
 
-    return new Graphics(sprite);
+    return new Graphics<>(sprite);
   }
 }

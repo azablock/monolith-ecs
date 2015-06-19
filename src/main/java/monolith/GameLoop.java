@@ -3,6 +3,8 @@ package monolith;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import monolith.cbs.entity.MoEntityBuilderManager;
+import monolith.cbs.entity.MoMetaEntity;
 import monolith.cbs.subsystem.MoSubSystem;
 import monolith.cbs.subsystem.PlayerInputSystem;
 import monolith.cbs.subsystem.SubSystemManager;
@@ -29,6 +31,9 @@ public class GameLoop {
 
   @Autowired
   private VMTranslator vmTranslator;
+
+  @Autowired
+  private MoEntityBuilderManager builderManager;
 
   @NotNull
   private final Timeline gameLoopTimeline;

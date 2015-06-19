@@ -9,11 +9,8 @@ public class LevelSectorGraphicsFactory implements GraphicsFactory {
 
   @NotNull
   @Override
-  public Graphics newGraphics() {
+  public Graphics<Group> newGraphics() {
 
-    Group group = new Group();
-    group.toBack();
-
-    return new Graphics(group);
+    return new Graphics<>(new Group());
   }
 }

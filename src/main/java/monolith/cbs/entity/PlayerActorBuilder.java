@@ -1,11 +1,11 @@
 package monolith.cbs.entity;
 
 import monolith.cbs.component.MoComponentFactoryManager;
+import monolith.cbs.component.graphics.GraphicsAdditionRequest;
 import monolith.cbs.component.graphics.PlayerActorGraphicsFactory;
-import monolith.cbs.component.graphics_addition_request.GraphicsAdditionRequest;
 import monolith.cbs.component.player_input.PlayerInput;
 import monolith.cbs.component.position.Apex;
-import monolith.cbs.component.position.ApexPositionFactory;
+import monolith.cbs.component.position.ApexPosition;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,10 +43,10 @@ public class PlayerActorBuilder implements MoEntityBuilder {
 
     MoMetaEntity playerActor = new MoMetaEntity("PlayerActor");
 
-    playerActor.add(factoryManager.factoryOfType(ApexPositionFactory.class).newApexPosition(apex));
-    playerActor.add(factoryManager.factoryOfType(PlayerActorGraphicsFactory.class).newGraphics());
-    playerActor.add(new GraphicsAdditionRequest());
     playerActor.add(new PlayerInput());
+    playerActor.add(new ApexPosition(apex));
+    playerActor.add(new GraphicsAdditionRequest());
+    playerActor.add(factoryManager.factoryOfType(PlayerActorGraphicsFactory.class).newGraphics());
 
     return playerActor;
   }

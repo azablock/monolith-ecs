@@ -24,9 +24,6 @@ public class SubSystemManager implements Iterable<MoSubSystem> {
   @Autowired
   private MovementSystem movementSystem;
 
-  @Autowired
-  private GraphicsManagementSystem graphicsManagementSystem;
-
   private Map<Class<? extends MoSubSystem>, MoSubSystem> systems;
 
   @PostConstruct
@@ -37,7 +34,6 @@ public class SubSystemManager implements Iterable<MoSubSystem> {
     systems.put(PathfindingSystem.class, pathfindingSystem);
     systems.put(RenderSystem.class, renderSystem);
     systems.put(MovementSystem.class, movementSystem);
-    systems.put(GraphicsManagementSystem.class, graphicsManagementSystem);
   }
 
   public <T extends MoSubSystem> T getSubSystem(@NotNull Class<T> systemType) {

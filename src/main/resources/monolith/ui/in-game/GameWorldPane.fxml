@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
-<Pane fx:id="gameWorldPane" prefHeight="200.0" prefWidth="200.0" styleClass="game-world-pane" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="monolith.ui.GameWorldPaneController"/>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="monolith.ui.GameWorldPaneController">
+  <children>
+    <Pane fx:id="gameWorldPane" prefHeight="200.0" prefWidth="200.0" styleClass="game-world-pane" />
+  </children>
+</StackPane>

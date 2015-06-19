@@ -1,9 +1,5 @@
 package monolith.ui;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,7 +8,6 @@ import javafx.scene.layout.Pane;
 import monolith.GameLoop;
 import monolith.MoContext;
 import monolith.cbs.entity.MoEntityBuilderManager;
-import monolith.cbs.entity.MoEntityManager;
 import monolith.cbs.subsystem.SubSystemManager;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -21,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import static javafx.scene.input.KeyCode.F1;
 import static monolith.MoUIState.MENU;
-import static monolith.cbs.entity.MoEntityManager.*;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Component

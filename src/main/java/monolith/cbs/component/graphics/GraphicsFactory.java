@@ -1,5 +1,6 @@
 package monolith.cbs.component.graphics;
 
+import javafx.scene.Node;
 import monolith.cbs.component.MoComponentFactory;
 import org.jetbrains.annotations.NotNull;
 

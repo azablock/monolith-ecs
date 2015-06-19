@@ -22,8 +22,7 @@ public class CrateGraphicsFactory implements GraphicsFactory {
     sprite.setFitWidth(FIELD_WORLD_SIZE);
     sprite.setFitHeight(FIELD_WORLD_SIZE);
     sprite.setPreserveRatio(true);
-    sprite.toFront();
 
-    return new Graphics(sprite);
+    return new Graphics<>(sprite);
   }
 }
