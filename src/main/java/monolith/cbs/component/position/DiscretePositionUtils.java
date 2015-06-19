@@ -2,6 +2,7 @@ package monolith.cbs.component.position;
 
 import org.jetbrains.annotations.NotNull;
 
+import static monolith.cbs.component.position.Edge.*;
 import static monolith.cbs.component.position.EdgePosition.*;
 
 public class DiscretePositionUtils {
@@ -66,44 +67,43 @@ public class DiscretePositionUtils {
     return pos(coordinates.getX() - 1, coordinates.getY() - 1);
   }
 
-  public static EdgePosition withNorthOf(Apex coordinates) {
+  public static Edge withNorthOf(Apex coordinates) {
 
     return newInstance(coordinates, north(coordinates));
   }
 
-  public static EdgePosition withNorthEastOf(Apex coordinates) {
+  public static Edge withNorthEastOf(Apex coordinates) {
 
     return newInstance(coordinates, northEast(coordinates));
   }
 
-  public static EdgePosition withEastOf(Apex coordinates) {
+  public static Edge withEastOf(Apex coordinates) {
 
     return newInstance(coordinates, east(coordinates));
   }
 
-  public static EdgePosition withSouthEastOf(Apex coordinates) {
+  public static Edge withSouthEastOf(Apex coordinates) {
 
     return newInstance(coordinates, southEast(coordinates));
   }
 
-  public static EdgePosition withSouthOf(Apex coordinates) {
+  public static Edge withSouthOf(Apex coordinates) {
 
     return newInstance(coordinates, south(coordinates));
   }
 
-  public static EdgePosition withSouthWestOf(Apex coordinates) {
+  public static Edge withSouthWestOf(Apex coordinates) {
 
     return newInstance(coordinates, southWest(coordinates));
   }
 
-  public static EdgePosition withWestOf(Apex coordinates) {
+  public static Edge withWestOf(Apex coordinates) {
 
     return newInstance(coordinates, west(coordinates));
   }
 
-  public static EdgePosition withNorthWestOf(Apex coordinates) {
+  public static Edge withNorthWestOf(Apex coordinates) {
 
     return newInstance(coordinates, northWest(coordinates));
   }
-
 }
