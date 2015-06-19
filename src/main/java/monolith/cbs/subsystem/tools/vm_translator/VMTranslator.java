@@ -6,8 +6,10 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
+import static java.lang.Math.*;
 import static monolith.cbs.component.graphics.GraphicsConstants.FIELD_WORLD_SIZE;
 import static monolith.cbs.component.position.DiscretePositionUtils.pos;
+import static monolith.cbs.component.position.DiscretePositionUtils.translated;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Component
@@ -20,21 +22,21 @@ public class VMTranslator {
 
   public VMTranslator() {
 
-    currentActivePosition = pos(8, 10);
+    currentActivePosition = pos(0, 0);
   }
 
   public Apex fromDouble(@NotNull final Point2D point2D) {
 
-    int discreteX = (int) ((point2D.getX() / FIELD_WORLD_SIZE) + currentActivePosition.getX());
-    int discreteY = (int) ((point2D.getX() / FIELD_WORLD_SIZE) + currentActivePosition.getY());
+    int discreteX = (int) ((point2D.getX() / FIELD_WORLD_SIZE)) + currentActivePosition.getX();
+    int discreteY = (int) ((point2D.getY() / FIELD_WORLD_SIZE)) + currentActivePosition.getY();
 
     return new Apex(discreteX, discreteY);
   }
 
   public Apex fromDouble(double x, double y) {
 
-    int discreteX = (int) ((x / FIELD_WORLD_SIZE) + currentActivePosition.getX());
-    int discreteY = (int) ((y / FIELD_WORLD_SIZE) + currentActivePosition.getY());
+    int discreteX = (int) ((x / FIELD_WORLD_SIZE)) + currentActivePosition.getX();
+    int discreteY = (int) ((y / FIELD_WORLD_SIZE)) + currentActivePosition.getY();
 
     return new Apex(discreteX, discreteY);
   }
@@ -53,12 +55,18 @@ public class VMTranslator {
 
   public Apex vectorMagnitudeBetween(@NotNull final Point2D start, @NotNull final Point2D destination) {
 
-    return fromDouble(start.getX() - destination.getX(), start.getY() - destination.getY());
+    double deltaX = start.getX() - destination.getX();
+    double deltaY = start.getY() - destination.getY();
+
+    int magnitudeX = (int) floor(deltaX / FIELD_WORLD_SIZE);
+    int magnitudeY = (int) floor(deltaY / FIELD_WORLD_SIZE);
+
+    return new Apex(magnitudeX, magnitudeY);
   }
 
-  public void setCurrentActivePosition(@NotNull Apex currentActivePosition) {
+  public void setCurrentActivePosition(@NotNull final Apex deltaMagnitude) {
 
-    this.currentActivePosition = currentActivePosition;
+    this.currentActivePosition = translated(this.currentActivePosition, deltaMagnitude.getX(), deltaMagnitude.getY());
   }
 
   @NotNull

@@ -50,15 +50,17 @@ public class GameWorldPaneController implements Iterable<Node> {
 //                        .build();
 
     entityBuilderManager.builderFor(CrateBuilder.class)
-                        .apex(pos(10, 10))
+                        .apex(pos(10, 8))
                         .build();
 
     MoMetaEntity playerActor = entityBuilderManager.builderFor(PlayerActorBuilder.class)
-                                             .apex(pos(8, 10))
+                                             .apex(pos(8, 8))
                                              .build();
 
     Point2D initRelocatePoint = vmTranslator.fromDiscrete(playerActor.get(ApexPosition.class).getApex());
-    playerActor.get(Graphics.class).node.relocate(initRelocatePoint.getX(), initRelocatePoint.getY());
+//    playerActor.get(Graphics.class).node.relocate(initRelocatePoint.getX(), initRelocatePoint.getY());
+    playerActor.get(Graphics.class).node.relocate(playerActor.get(ApexPosition.class).getX() * FIELD_WORLD_SIZE,
+                                                  playerActor.get(ApexPosition.class).getY() * FIELD_WORLD_SIZE);
 
     gameWorldPane.setOnMouseClicked(playerInputSystem::handle);
 

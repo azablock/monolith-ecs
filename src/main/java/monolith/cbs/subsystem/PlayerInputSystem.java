@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import monolith.cbs.component.bounding_box.BoundingBox;
 import monolith.cbs.component.graphics.Graphics;
+import monolith.cbs.component.graphics.GraphicsConstants;
 import monolith.cbs.component.pathfinding.PathfindingRequest;
 import monolith.cbs.component.player_input.PlayerInput;
 import monolith.cbs.component.position.Apex;
@@ -22,6 +23,7 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.UUID;
 
+import static monolith.cbs.component.graphics.GraphicsConstants.*;
 import static monolith.cbs.component.position.DiscretePositionUtils.translated;
 import static monolith.cbs.entity.MoEntityManager.ENTITY_MANAGER;
 import static monolith.cbs.entity.MoMetaEntity.loadFromGameWorld;
@@ -51,14 +53,6 @@ public class PlayerInputSystem implements MoSubSystem, EventHandler<MouseEvent> 
     if (!events.isEmpty()) {
       MouseEvent event = events.getFirst();
       Point2D mouseActionPoint = new Point2D(event.getX(), event.getY());
-//
-//      ENTITY_MANAGER.getAllEntitiesPossessingComponent(IsLevelSector.class).forEach(uuid -> {
-//
-//        if (loadFromGameWorld(uuid).get(Graphics.class).node.contains(mouseActionPoint))
-//
-//          allWithPlayerInput
-//              .forEach(playerActorEntity -> StackPane.setAlignment(loadFromGameWorld(playerActorEntity).get(Graphics.class).node, Pos.CENTER));
-//      });
 
       allWithPlayerInput.forEach(uuid -> {
         MoMetaEntity withPlayerInput = loadFromGameWorld(uuid);
@@ -70,11 +64,14 @@ public class PlayerInputSystem implements MoSubSystem, EventHandler<MouseEvent> 
                                                               magnitude.getX(),
                                                               magnitude.getY())));
 
-        LOG.debug(String.valueOf(node.getLayoutX()) + " " + String.valueOf(node.getLayoutY()));
-        LOG.debug(String.valueOf(mouseActionPoint));
-        LOG.debug(String.valueOf(magnitude));
 
-        vmTranslator.setCurrentActivePosition(magnitude);
+        Point2D deltaPoint = new Point2D(mouseActionPoint.getX() - node.getLayoutX(), mouseActionPoint.getY() - node.getLayoutY());
+
+        LOG.debug("distance between mouseAction and playerActorGraphics: " + deltaPoint + " , FIELD_WORLD_SIZE: " + FIELD_WORLD_SIZE);
+        LOG.debug("vector magnitude (discrete): " + magnitude);
+        LOG.debug("fromDouble (vm): " + vmTranslator.fromDouble(deltaPoint) + "\n");
+
+        vmTranslator.setCurrentActivePosition(magnitude); //to nie tu, tylko w movement czy cos, ale narazie jest tmp
       });
 
       events.removeFirst();

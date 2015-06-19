@@ -34,7 +34,7 @@ public class Main extends Application {
     scene.setCursor(new ImageCursor(new Image("monolith/images/monolithCursor.png")));
 
     primaryStage.setFullScreenExitKeyCombination(NO_MATCH);
-    primaryStage.setFullScreen(false);
+    primaryStage.setFullScreen(true);
     primaryStage.setScene(scene);
     primaryStage.show();
   }
